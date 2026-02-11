@@ -85,4 +85,16 @@ export class RaffleEntryService {
 
     return this.raffleEntryRepo.save(entry);
   }
+
+  /**
+   * Delete a raffle entry
+   *
+   * @param id - The id of the raffle entry
+   *
+   * @returns {Promise<boolean>} True if deleted, false if not found
+   */
+  async delete(id: number): Promise<boolean> {
+    const result = await this.raffleEntryRepo.delete(id);
+    return (result.affected ?? 0) > 0;
+  }
 }
