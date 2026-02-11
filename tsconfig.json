@@ -19,6 +19,14 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@raffle-entry/*": ["src/raffle-entry/*"],
+      "@raffle-draw/*": ["src/raffle-draw/*"],
+      "@raffle-result/*": ["src/raffle-result/*"],
+      "@mail/*": ["src/mail/*"],
+      "@database/*": ["src/database/*"]
+    }
   }
 }

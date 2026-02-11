@@ -8,6 +8,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { DatabaseModule } from './database/database.module';
 import { RaffleEntryModule } from './raffle-entry/raffle-entry.module';
 import { RaffleDrawModule } from './raffle-draw/raffle-draw.module';
+import { RaffleResultModule } from './raffle-result/raffle-result.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { RaffleDrawModule } from './raffle-draw/raffle-draw.module';
     DatabaseModule,
     RaffleEntryModule,
     RaffleDrawModule,
+    RaffleResultModule,
   ],
 })
 export class AppModule {}

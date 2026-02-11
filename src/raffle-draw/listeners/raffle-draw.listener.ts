@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { MailService } from '../../mail/mail.service';
+import { RaffleResultService } from '../../raffle-result/raffle-result.service';
 import { WinnerSelectedEvent } from '../events/winner-selected.event';
 import { NonWinnersSelectedEvent } from '../events/non-winners-selected.event';
 import { RaffleDrawExecutedEvent } from '../events/raffle-draw-executed.event';
@@ -9,7 +10,10 @@ import { RaffleDrawExecutedEvent } from '../events/raffle-draw-executed.event';
 export class RaffleDrawListener {
   private readonly logger = new Logger(RaffleDrawListener.name);
 
-  constructor(private readonly mailService: MailService) {}
+  constructor(
+    private readonly mailService: MailService,
+    private readonly raffleResultService: RaffleResultService,
+  ) {}
 
   @OnEvent(WinnerSelectedEvent.topic, { async: true })
   /**
@@ -45,13 +49,20 @@ export class RaffleDrawListener {
 
   @OnEvent(RaffleDrawExecutedEvent.topic)
   /**
-   * Handle raffle draw executed event
+   * Handle raffle draw executed event - logs and saves result
    *
    * @param event raffle draw executed event
    */
-  handleRaffleDrawExecuted(event: RaffleDrawExecutedEvent) {
+  async handleRaffleDrawExecuted(event: RaffleDrawExecutedEvent) {
     this.logger.log(
       `Raffle completed. Winner: ${event.winnerName} (${event.winnerEmail}) from ${event.totalEntries} entries`,
+    );
+
+    await this.raffleResultService.saveResult(
+      event.winnerId,
+      event.winnerEmail,
+      event.winnerName,
+      event.totalEntries,
     );
   }
 }
