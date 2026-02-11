@@ -20,8 +20,8 @@ export class RaffleDrawService {
   /**
    * Execute the raffle every Monday at 1 PM
    * Selects 1 winner at random from all entries of the previous week
-   * 
-   * @returns Promise<void>
+   *
+   * @returns {Promise<void>}
    */
   @Cron('0 13 * * 1')
   async executeRaffle(): Promise<void> {
@@ -32,8 +32,8 @@ export class RaffleDrawService {
 
   /**
    * Execute a forced raffle draw from all entries
-   * 
-   * @returns Promise<void>
+   *
+   * @returns {Promise<void>}
    */
   async executeForcedDraw(): Promise<void> {
     this.logger.log('Starting forced raffle draw');
@@ -44,9 +44,9 @@ export class RaffleDrawService {
   /**
    * Run the draw logic
    *
-   * @param allEntries - If true, draw from all entries. If false, only from last week.
-   * 
-   * @returns Promise<void>
+   * @param {boolean} allEntries - If true, draw from all entries. If false, only from last week.
+   *
+   * @returns {Promise<void>}
    */
   private async runDraw(allEntries: boolean): Promise<void> {
     const entries = allEntries
@@ -88,7 +88,7 @@ export class RaffleDrawService {
   /**
    * Get all entries
    *
-   * @returns Promise<RaffleEntry[]>
+   * @returns {Promise<RaffleEntry[]>}
    */
   private async getAllEntries(): Promise<RaffleEntry[]> {
     return this.raffleEntryRepo.find();
@@ -97,7 +97,7 @@ export class RaffleDrawService {
   /**
    * Get all entries from the previous week (Monday to Sunday)
    *
-   * @returns Promise<RaffleEntry[]>
+   * @returns {Promise<RaffleEntry[]>}
    */
   private async getEntriesFromLastWeek(): Promise<RaffleEntry[]> {
     const now = new Date();
@@ -122,9 +122,9 @@ export class RaffleDrawService {
   /**
    * Select a random winner from the entries
    *
-   * @param entries raffle entries
+   * @param {RaffleEntry[]} entries - Raffle entries
    *
-   * @returns RaffleEntry
+   * @returns {RaffleEntry}
    */
   private selectWinner(entries: RaffleEntry[]): RaffleEntry {
     const randomIndex = Math.floor(Math.random() * entries.length);

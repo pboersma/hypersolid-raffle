@@ -1,10 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
 
+export type EmailMeta = {
+  entryId: number;
+  type: 'winner' | 'non-winner' | 'confirmation';
+};
+
 export type SentEmail = {
   to: string;
   subject: string;
   body: string;
-  meta?: Record<string, any>;
+  meta?: EmailMeta;
   sentAt: Date;
 };
 
@@ -16,12 +21,14 @@ export class MailService {
   /**
    * Send an email
    *
-   * @param to recipient
-   * @param subject
-   * @param body
-   * @param meta metadata
+   * @param {string} to - Recipient email address
+   * @param {string} subject - Email subject
+   * @param {string} body - Email body content
+   * @param {EmailMeta} meta - Optional metadata
+   *
+   * @returns {void}
    */
-  send(to: string, subject: string, body: string, meta?: Record<string, any>) {
+  send(to: string, subject: string, body: string, meta?: EmailMeta): void {
     const email: SentEmail = { to, subject, body, meta, sentAt: new Date() };
     this.sent.push(email);
 
@@ -33,7 +40,7 @@ export class MailService {
   /**
    * Get sent emails
    *
-   * @returns sent emails
+   * @returns {SentEmail[]}
    */
   getSentEmails(): SentEmail[] {
     return [...this.sent];
@@ -42,7 +49,7 @@ export class MailService {
   /**
    * Clear sent emails
    *
-   * @returns void
+   * @returns {void}
    */
   clear() {
     this.sent.length = 0;

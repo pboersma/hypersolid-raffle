@@ -15,7 +15,7 @@ export class RaffleResultController {
   /**
    * Get all raffle results
    *
-   * @returns Promise<RaffleResult[]> Array of raffle results ordered by draw date
+   * @returns {Promise<RaffleResult[]>} Array of raffle results ordered by draw date
    */
   @Get()
   @ApiRaffleResultFindAll()
@@ -26,7 +26,7 @@ export class RaffleResultController {
   /**
    * Get the latest raffle result
    *
-   * @returns Promise<RaffleResult | null> The most recent raffle result or null
+   * @returns {Promise<RaffleResult | null>} The most recent raffle result or null
    */
   @Get('latest')
   @ApiRaffleResultFindLatest()

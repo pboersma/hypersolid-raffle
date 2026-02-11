@@ -12,11 +12,12 @@ export class RaffleResultService {
   /**
    * Save a raffle result
    *
-   * @param winnerId - The id of the winner
-   * @param winnerEmail - The email of the winner
-   * @param winnerName - The name of the winner
-   * @param totalEntries - Total number of entries in the draw
-   * @returns The saved raffle result
+   * @param {number} winnerId - The id of the winner
+   * @param {string} winnerEmail - The email of the winner
+   * @param {string} winnerName - The name of the winner
+   * @param {number} totalEntries - Total number of entries in the draw
+   *
+   * @returns {Promise<RaffleResult>} The saved raffle result
    */
   async saveResult(
     winnerId: number,
@@ -37,7 +38,7 @@ export class RaffleResultService {
   /**
    * Get all raffle results ordered by draw date (newest first)
    *
-   * @returns Array of raffle results
+   * @returns {Promise<RaffleResult[]>} Array of raffle results
    */
   async findAll(): Promise<RaffleResult[]> {
     return this.raffleResultRepo.find({
@@ -48,7 +49,7 @@ export class RaffleResultService {
   /**
    * Get the most recent raffle result
    *
-   * @returns The most recent raffle result or null
+   * @returns {Promise<RaffleResult | null>} The most recent raffle result or null
    */
   async findLatest(): Promise<RaffleResult | null> {
     return this.raffleResultRepo.findOne({

@@ -53,7 +53,7 @@ export class RaffleEntryService {
   /**
    * Get a raffle entry by id
    *
-   * @param id - The id of the raffle entry
+   * @param {number} id - The id of the raffle entry
    *
    * @returns {Promise<RaffleEntry | null>} The raffle entry or null if not found
    */
@@ -64,8 +64,8 @@ export class RaffleEntryService {
   /**
    * Update a raffle entry
    *
-   * @param id - The id of the raffle entry
-   * @param dto - The update raffle entry data transfer object
+   * @param {number} id - The id of the raffle entry
+   * @param {CreateRaffleEntryDto} dto - The update raffle entry data transfer object
    *
    * @returns {Promise<RaffleEntry | null>} The updated raffle entry or null if not found
    */
@@ -89,7 +89,7 @@ export class RaffleEntryService {
   /**
    * Delete a raffle entry
    *
-   * @param id - The id of the raffle entry
+   * @param {number} id - The id of the raffle entry to delete
    *
    * @returns {Promise<boolean>} True if deleted, false if not found
    */

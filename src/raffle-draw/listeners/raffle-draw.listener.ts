@@ -8,61 +8,67 @@ import { RaffleDrawExecutedEvent } from '../events/raffle-draw-executed.event';
 
 @Injectable()
 export class RaffleDrawListener {
-  private readonly logger = new Logger(RaffleDrawListener.name);
+    private readonly logger = new Logger(RaffleDrawListener.name);
 
-  constructor(
-    private readonly mailService: MailService,
-    private readonly raffleResultService: RaffleResultService,
-  ) {}
+    constructor(
+        private readonly mailService: MailService,
+        private readonly raffleResultService: RaffleResultService,
+    ) { }
 
-  @OnEvent(WinnerSelectedEvent.topic, { async: true })
-  /**
-   * Handle winner selected event
-   *
-   * @param event winner selected event
-   */
-  async handleWinnerSelected(event: WinnerSelectedEvent) {
-    this.mailService.send(
-      event.email,
-      'Congratulations! You won the raffle!',
-      `Hi ${event.name},\n\nCongratulations! You have been selected as the winner of this week's raffle!\n\nYour entry ID: ${event.entryId}\n\nThank you for participating!`,
-      { entryId: event.entryId, type: 'winner' },
-    );
-  }
-
-  @OnEvent(NonWinnersSelectedEvent.topic, { async: true })
-  /**
-   * Handle non-winners selected event
-   *
-   * @param event non-winners selected event
-   */
-  async handleNonWinnersSelected(event: NonWinnersSelectedEvent) {
-    for (const entry of event.nonWinners) {
-      this.mailService.send(
-        entry.email,
-        'Raffle results',
-        `Hi ${entry.name},\n\nThank you for participating in this week's raffle. Unfortunately, you were not selected as the winner this time.\n\nYour entry ID: ${entry.id}\n\nPlease try again next week!`,
-        { entryId: entry.id, type: 'non-winner' },
-      );
+    /**
+     * Handle winner selected event
+     *
+     * @param {WinnerSelectedEvent} event - Winner selected event
+     *
+     * @returns {Promise<void>}
+     */
+    @OnEvent(WinnerSelectedEvent.topic, { async: true })
+    async handleWinnerSelected(event: WinnerSelectedEvent): Promise<void> {
+        this.mailService.send(
+            event.email,
+            'Congratulations! You won the raffle!',
+            `Hi ${event.name},\n\nCongratulations! You have been selected as the winner of this week's raffle!\n\nYour entry ID: ${event.entryId}\n\nThank you for participating!`,
+            { entryId: event.entryId, type: 'winner' },
+        );
     }
-  }
 
-  @OnEvent(RaffleDrawExecutedEvent.topic)
-  /**
-   * Handle raffle draw executed event - logs and saves result
-   *
-   * @param event raffle draw executed event
-   */
-  async handleRaffleDrawExecuted(event: RaffleDrawExecutedEvent) {
-    this.logger.log(
-      `Raffle completed. Winner: ${event.winnerName} (${event.winnerEmail}) from ${event.totalEntries} entries`,
-    );
+    /**
+     * Handle non-winners selected event
+     *
+     * @param {NonWinnersSelectedEvent} event - Non-winners selected event
+     *
+     * @returns {Promise<void>}
+     */
+    @OnEvent(NonWinnersSelectedEvent.topic, { async: true })
+    async handleNonWinnersSelected(event: NonWinnersSelectedEvent): Promise<void> {
+        for (const entry of event.nonWinners) {
+            this.mailService.send(
+                entry.email,
+                'Raffle results',
+                `Hi ${entry.name},\n\nThank you for participating in this week's raffle. Unfortunately, you were not selected as the winner this time.\n\nYour entry ID: ${entry.id}\n\nPlease try again next week!`,
+                { entryId: entry.id, type: 'non-winner' },
+            );
+        }
+    }
 
-    await this.raffleResultService.saveResult(
-      event.winnerId,
-      event.winnerEmail,
-      event.winnerName,
-      event.totalEntries,
-    );
-  }
+    /**
+     * Handle raffle draw executed event - logs and saves result
+     *
+     * @param {RaffleDrawExecutedEvent} event - Raffle draw executed event
+     *
+     * @returns {Promise<void>}
+     */
+    @OnEvent(RaffleDrawExecutedEvent.topic)
+    async handleRaffleDrawExecuted(event: RaffleDrawExecutedEvent): Promise<void> {
+        this.logger.log(
+            `Raffle completed. Winner: ${event.winnerName} (${event.winnerEmail}) from ${event.totalEntries} entries`,
+        );
+
+        await this.raffleResultService.saveResult(
+            event.winnerId,
+            event.winnerEmail,
+            event.winnerName,
+            event.totalEntries,
+        );
+    }
 }

@@ -11,7 +11,7 @@ export class RaffleDrawController {
   /**
    * Execute a forced raffle draw immediately
    *
-   * @returns Promise<{ message: string }> Success message
+   * @returns {Promise<{ message: string }>} Success message
    */
   @Post()
   @ApiRaffleDrawForce()
