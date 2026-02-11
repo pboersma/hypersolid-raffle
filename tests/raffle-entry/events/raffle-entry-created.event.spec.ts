@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { RaffleEntryCreatedEvent } from '../../../src/raffle-entry/events/raffle-entry-created.event';
+import { RaffleEntryCreatedEvent } from '@raffle-entry/events/raffle-entry-created.event';
 
 describe('RaffleEntryCreatedEvent', () => {
   it('should have a static topic property', () => {

@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { MailService } from '../../mail/mail.service';
-import { RaffleResultService } from '../../raffle-result/raffle-result.service';
-import { WinnerSelectedEvent } from '../events/winner-selected.event';
-import { NonWinnersSelectedEvent } from '../events/non-winners-selected.event';
-import { RaffleDrawExecutedEvent } from '../events/raffle-draw-executed.event';
+import { MailService } from '@mail/mail.service';
+import { RaffleResultService } from '@raffle-result/raffle-result.service';
+import { WinnerSelectedEvent } from '@raffle-draw/events/winner-selected.event';
+import { NonWinnersSelectedEvent } from '@raffle-draw/events/non-winners-selected.event';
+import { RaffleDrawExecutedEvent } from '@raffle-draw/events/raffle-draw-executed.event';
 
 @Injectable()
 export class RaffleDrawListener {

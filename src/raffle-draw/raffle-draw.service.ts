@@ -2,10 +2,10 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Repository, Between } from 'typeorm';
-import { RaffleEntry } from '../raffle-entry/raffle-entry.entity';
-import { WinnerSelectedEvent } from './events/winner-selected.event';
-import { NonWinnersSelectedEvent } from './events/non-winners-selected.event';
-import { RaffleDrawExecutedEvent } from './events/raffle-draw-executed.event';
+import { RaffleEntry } from '@raffle-entry/raffle-entry.entity';
+import { WinnerSelectedEvent } from '@raffle-draw/events/winner-selected.event';
+import { NonWinnersSelectedEvent } from '@raffle-draw/events/non-winners-selected.event';
+import { RaffleDrawExecutedEvent } from '@raffle-draw/events/raffle-draw-executed.event';
 
 @Injectable()
 export class RaffleDrawService {

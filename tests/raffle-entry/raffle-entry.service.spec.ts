@@ -2,10 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { faker } from '@faker-js/faker';
 import { Repository } from 'typeorm';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { RaffleEntryService } from '../../src/raffle-entry/raffle-entry.service';
-import { RaffleEntry } from '../../src/raffle-entry/raffle-entry.entity';
-import { RaffleEntryCreatedEvent } from '../../src/raffle-entry/events/raffle-entry-created.event';
-import { CreateRaffleEntryDto } from '../../src/raffle-entry/dto/create-raffle-entry.dto';
+import { RaffleEntryService } from '@raffle-entry/raffle-entry.service';
+import { RaffleEntry } from '@raffle-entry/raffle-entry.entity';
+import { RaffleEntryCreatedEvent } from '@raffle-entry/events/raffle-entry-created.event';
+import { CreateRaffleEntryDto } from '@raffle-entry/dto/create-raffle-entry.dto';
 
 describe('RaffleEntryService', () => {
   let service: RaffleEntryService;

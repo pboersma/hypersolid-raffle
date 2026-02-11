@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { faker } from '@faker-js/faker';
-import { RaffleEntryController } from '../../src/raffle-entry/raffle-entry.controller';
-import { RaffleEntryService } from '../../src/raffle-entry/raffle-entry.service';
-import { RaffleEntryResponseDto } from '../../src/raffle-entry/dto/raffle-entry-response.dto';
-import { CreateRaffleEntryDto } from '../../src/raffle-entry/dto/create-raffle-entry.dto';
+import { RaffleEntryController } from '@raffle-entry/raffle-entry.controller';
+import { RaffleEntryService } from '@raffle-entry/raffle-entry.service';
+import { RaffleEntryResponseDto } from '@raffle-entry/dto/raffle-entry-response.dto';
+import { CreateRaffleEntryDto } from '@raffle-entry/dto/create-raffle-entry.dto';
 
 describe('RaffleEntryController', () => {
   let controller: RaffleEntryController;

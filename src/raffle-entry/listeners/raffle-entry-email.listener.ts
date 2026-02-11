@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { MailService } from '../../mail/mail.service';
+import { MailService } from '@mail/mail.service';
 import { RaffleEntryCreatedEvent } from '../events/raffle-entry-created.event';
 
 @Injectable()

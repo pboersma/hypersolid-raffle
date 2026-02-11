@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '../database/database.module';
-import { MailModule } from '../mail/mail.module';
+import { DatabaseModule } from '@database/database.module';
+import { MailModule } from '@mail/mail.module';
 import { RaffleEntryProvider } from './raffle-entry.provider';
 import { RaffleEntryService } from './raffle-entry.service';
 import { RaffleEntryEmailListener } from './listeners/raffle-entry-email.listener';

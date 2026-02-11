@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { faker } from '@faker-js/faker';
-import { RaffleEntryEmailListener } from '../../../src/raffle-entry/listeners/raffle-entry-email.listener';
-import { MailService } from '../../../src/mail/mail.service';
-import { RaffleEntryCreatedEvent } from '../../../src/raffle-entry/events/raffle-entry-created.event';
+import { RaffleEntryEmailListener } from '@raffle-entry/listeners/raffle-entry-email.listener';
+import { MailService } from '@mail/mail.service';
+import { RaffleEntryCreatedEvent } from '@raffle-entry/events/raffle-entry-created.event';
 
 describe('RaffleEntryEmailListener', () => {
   let listener: RaffleEntryEmailListener;

@@ -5,10 +5,10 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 
 // Custom Modules
-import { DatabaseModule } from './database/database.module';
-import { RaffleEntryModule } from './raffle-entry/raffle-entry.module';
-import { RaffleDrawModule } from './raffle-draw/raffle-draw.module';
-import { RaffleResultModule } from './raffle-result/raffle-result.module';
+import { DatabaseModule } from '@database/database.module';
+import { RaffleEntryModule } from '@raffle-entry/raffle-entry.module';
+import { RaffleDrawModule } from '@raffle-draw/raffle-draw.module';
+import { RaffleResultModule } from '@raffle-result/raffle-result.module';
 
 @Module({
   imports: [
