@@ -1,14 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Repository } from 'typeorm';
 import { CreateRaffleEntryDto } from './dto/create-raffle-entry.dto';
 import { RaffleEntry } from './raffle-entry.entity';
+import { RaffleEntryCreatedEvent } from './events/raffle-entry-created.event';
+
 
 @Injectable()
 export class RaffleEntryService {
   constructor(
     @Inject('RAFFLE_ENTRY_REPOSITORY')
     private readonly raffleEntryRepo: Repository<RaffleEntry>,
-  ) {}
+    private readonly eventEmitter: EventEmitter2,
+  ) { }
 
 
   /**
@@ -33,7 +37,14 @@ export class RaffleEntryService {
       name: dto.name,
     });
 
-    return this.raffleEntryRepo.save(entry);
+    const saved = await this.raffleEntryRepo.save(entry);
+
+    this.eventEmitter.emit(
+      RaffleEntryCreatedEvent.topic,
+      new RaffleEntryCreatedEvent(saved.id, saved.email, saved.name, saved.createdAt),
+    );
+
+    return saved;
   }
 
 
