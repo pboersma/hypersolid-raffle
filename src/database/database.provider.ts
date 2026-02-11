@@ -1,5 +1,8 @@
 import { DataSource } from 'typeorm';
 
+/**
+ * Database providers
+ */
 export const databaseProviders = [
   {
     provide: 'DATA_SOURCE',
