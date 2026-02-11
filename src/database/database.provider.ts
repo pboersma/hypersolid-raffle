@@ -9,7 +9,7 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'better-sqlite3',
-        database: 'dev.sqlite',
+        database: process.env.DB_PATH || 'dev.sqlite',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         synchronize: true,
         logging: false,

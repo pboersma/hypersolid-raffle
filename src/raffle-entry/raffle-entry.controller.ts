@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, UseFilters } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { UniqueConstraintFilter } from '@src/common/filters/unique-constraint.filter';
 import {
     ApiRaffleEntryFindAll,
     ApiRaffleEntryFindOne,
@@ -17,6 +18,7 @@ import { RaffleEntryService } from './raffle-entry.service';
 
 @ApiTags('raffle-entry')
 @Controller('raffle-entry')
+@UseFilters(UniqueConstraintFilter)
 export class RaffleEntryController {
     constructor(private readonly raffleEntryService: RaffleEntryService) { }
 

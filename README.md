@@ -86,6 +86,13 @@ Weekly automated draws using `@nestjs/schedule` with manual override capability 
 - Listeners: Side effects (emails, logging)
 - Entities: Data models
 - Decorators: Reusable metadata
+- Filters: Cross-cutting error handling
+
+### Exception Filter Pattern
+Centralized error handling using NestJS ExceptionFilters (`src/common/filters/`):
+- `UniqueConstraintFilter` - Converts database unique constraint violations into HTTP 409 Conflict responses
+- Keeps services clean by separating error transformation from business logic
+- Easily reusable across multiple controllers via `@UseFilters()` decorator
 
 ## API Endpoints
 
