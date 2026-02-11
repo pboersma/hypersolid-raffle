@@ -16,5 +16,4 @@ import { RaffleEntryController } from './raffle-entry.controller';
   ],
   exports: [RaffleEntryService],
 })
-
 export class RaffleEntryModule {}

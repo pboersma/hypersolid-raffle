@@ -15,22 +15,24 @@ export class MailService {
 
   /**
    * Send an email
-   * 
+   *
    * @param to recipient
-   * @param subject 
-   * @param body 
+   * @param subject
+   * @param body
    * @param meta metadata
    */
   send(to: string, subject: string, body: string, meta?: Record<string, any>) {
     const email: SentEmail = { to, subject, body, meta, sentAt: new Date() };
     this.sent.push(email);
 
-    this.logger.log(`[EMAIL] to=${to} subject="${subject}" meta=${JSON.stringify(meta ?? {})}`);
+    this.logger.log(
+      `[EMAIL] to=${to} subject="${subject}" meta=${JSON.stringify(meta ?? {})}`,
+    );
   }
 
   /**
    * Get sent emails
-   * 
+   *
    * @returns sent emails
    */
   getSentEmails(): SentEmail[] {
@@ -39,7 +41,7 @@ export class MailService {
 
   /**
    * Clear sent emails
-   * 
+   *
    * @returns void
    */
   clear() {

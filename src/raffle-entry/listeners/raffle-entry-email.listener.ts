@@ -10,7 +10,7 @@ export class RaffleEntryEmailListener {
   @OnEvent(RaffleEntryCreatedEvent.topic, { async: true })
   /**
    * Handle raffle entry created event
-   * 
+   *
    * @param event raffle entry created event
    */
   async handleEntryCreated(event: RaffleEntryCreatedEvent) {
